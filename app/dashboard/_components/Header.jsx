@@ -63,8 +63,14 @@ function Header() {
           ${path === '/dashboard/howitworks' ? 'text-primary font-bold' : ''}`}>
           <Link href="/dashboard/howitworks">How it works?</Link>
         </li>
+        <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
+          ${path === '/dashboard/InterviewList' ? 'text-primary font-bold' : ''}`}>
+          <Link href="/dashboard/InterviewList">Previous Interviews</Link>
+        </li>
       </ul>
+      <div className="scale-150 origin-center"> {/* Increase size by 1.5x */}
       <UserButton />
+    </div>
     </div>
   )
 }
