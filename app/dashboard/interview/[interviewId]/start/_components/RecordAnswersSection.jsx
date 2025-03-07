@@ -147,7 +147,7 @@ function RecordAnswersSection({mockInterviewQuestion,activeQuestionIndex,intervi
 
   return (
     <div className='flex flex-col items-center justify-center'>
-    <div className='flex flex-col justify-center items-center mt-20 rounded-lg p-6 bg-black'>
+    <div className='flex flex-col justify-center items-center mt-11 rounded-lg p-6 bg-black'>
         <Image src={'/Camera-retro-icon-removebg-preview.png'} width={200} height={600} className='absolute my-11' alt='webcam logo'/>
         <Webcam 
         mirrored={true}
@@ -157,7 +157,7 @@ function RecordAnswersSection({mockInterviewQuestion,activeQuestionIndex,intervi
             zIndex:10,
         }}/>
     </div>
-    <Button disabled={loading} variant="outline" className='my-20'
+    <Button disabled={loading} variant="outline" className='mt-5 mb-6'
     onClick={StartStopRecording}>
       {
        isRecording?<h2 className='flex gap-1 text-red-600 animate-pulse items-center'><StopCircle/>Stop Recording</h2> : 'Record Answer'

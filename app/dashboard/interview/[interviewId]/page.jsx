@@ -114,6 +114,8 @@
 
 
 "use client"
+import { HyperText } from '@/components/magicui/hyper-text';
+import { RetroGrid } from '@/components/magicui/retro-grid';
 import { Button } from '@/components/ui/button';
 import { db } from '@/utils/db';
 import { MockInterview } from '@/utils/schema';
@@ -122,6 +124,7 @@ import { Lightbulb, WebcamIcon } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import Webcam from 'react-webcam';
+
 
 function Interview({ params: asyncParams }) {
   const [params, setParams] = useState(null);
@@ -153,11 +156,19 @@ function Interview({ params: asyncParams }) {
   };
 
   return (
+    <div className='relative'>
+    <RetroGrid/>
     <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl w-full space-y-6">
-        <h1 className="text-3xl font-bold text-[#37474F] text-center">Let's Get Started</h1>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <HyperText className="text-3xl font-bold text-[#37474F] text-center">
+  Let's Get Started
+</HyperText>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-11 rounded-2xl" style={{
+        backgroundImage: "url('https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/66017f425a91654f12e4b20c_template-section-bg-p-1600.webp')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}>
           <div className="space-y-6">
             <div className="p-6 rounded-lg border shadow-md bg-white">
               {interviewData ? (
@@ -201,7 +212,7 @@ function Interview({ params: asyncParams }) {
             ) : (
               <div className="flex flex-col items-center space-y-4">
                 <WebcamIcon className="h-72 w-72 bg-gray-200 rounded-lg border p-6" />
-                <Button variant="ghost" className="w-full border border-[#37474F] text-[#37474F] hover:bg-gray-200" onClick={() => setWebCamEnabled(true)}>
+                <Button variant="ghost" className="w-full border border-[#37474F] bg-gray-200 text-[#37474F] hover:bg-white hover:shadow-lg" onClick={() => setWebCamEnabled(true)}>
                   Enable Webcam & Microphone
                 </Button>
               </div>
@@ -211,10 +222,11 @@ function Interview({ params: asyncParams }) {
         
         <div className="flex justify-center">
           <Link href={`/dashboard/interview/${params?.interviewId}/start`}>
-            <Button className="bg-[#37474F] text-white px-6 py-3 rounded-lg hover:bg-gray-700">Start Interview</Button>
+            <Button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-500">Start Interview</Button>
           </Link>
         </div>
       </div>
+    </div>
     </div>
   );
 }

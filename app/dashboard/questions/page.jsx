@@ -181,9 +181,11 @@
 
 "use client"
 import Head from "next/head";
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 import { useState } from "react";
 
-const questionsData = [
+const faqs = [
   {
     id: 1,
     category: "Technical",
@@ -191,13 +193,13 @@ const questionsData = [
     answer:
       "The AI analyzes your responses in real-time, providing feedback on key metrics like clarity, tone, and relevance to the question.",
   },
-//   {
-//     id: 2,
-//     category: "Application Usage",
-//     question: "How do you track your progress in the mock interview module?",
-//     answer:
-//       "Users can track their progress using the dashboard, which shows metrics like completed interviews, feedback summaries, and improvement over time.",
-//   },
+  {
+    id: 2,
+    category: "Application Usage",
+    question: "How do you track your progress in the mock interview module?",
+    answer:
+      "Users can track their progress using the dashboard, which shows metrics like completed interviews, feedback summaries, and improvement over time.",
+  },
   {
     id: 3,
     category: "Application Usage",
@@ -267,94 +269,50 @@ const questionsData = [
   },
 ];
 
-export default function Questions() {
-  const [search, setSearch] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [expandedQuestion, setExpandedQuestion] = useState(null);
-
-  const filteredQuestions = questionsData.filter(
-    (q) =>
-      (selectedCategory === "All" || q.category === selectedCategory) &&
-      q.question.toLowerCase().includes(search.toLowerCase())
-  );
+export default function FAQSection() {
+  const [openFAQ, setOpenFAQ] = useState(null);
 
   return (
-    <>
-      <Head>
-        <title>Questions - Career Elevate</title>
-        <meta
-          name="description"
-          content="Practice mock interview questions and prepare for your next big opportunity."
-        />
-      </Head>
-      <div className="min-h-screen bg-[#37474F] text-white mt-3">
-        {/* Header */}
-        <header className="bg-[#263238] py-6 shadow-md">
-          <div className="container mx-auto px-4">
-            <h1 className="text-3xl font-bold">Mock Interview Questions</h1>
-            <p className="text-sm mt-1">
-              Practice questions categorized by type to prepare effectively.
-            </p>
-          </div>
-        </header>
+    <section
+      className="py-16 px-6 lg:px-20 bg-cover bg-center"
+      style={{
+        backgroundImage:
+          "url('https://cdn.prod.website-files.com/65e89895c5a4b8d764c0d710/66d030e65d6df2a0e0b5b304_Frame%202087325276.svg')",
+      }}
+    >
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-start gap-10">
+        {/* Left Side (Title) */}
+        <div className="md:w-1/3">
+          <h2 className="text-4xl font-bold text-gray-900">
+            Mock Interview <br /> FAQs
+          </h2>
+        </div>
 
-        {/* Main Content */}
-        <main className="container mx-auto px-4 py-10">
-          {/* Filters */}
-          <div className="mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
-            <input
-              type="text"
-              placeholder="Search questions..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3 text-black focus:ring-2 focus:ring-[#90A4AE]"
-            />
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/4 text-black focus:ring-2 focus:ring-[#90A4AE]"
+        {/* Right Side (FAQ List) */}
+        <div className="md:w-2/3 space-y-4">
+          {faqs.map((faq) => (
+            <div
+              key={faq.id}
+              className="bg-[#F5F8FF] rounded-xl p-5 cursor-pointer transition-all shadow-sm hover:shadow-md"
+              onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
             >
-              <option value="All">All Categories</option>
-              <option value="Technical">Technical</option>
-              <option value="Behavioral">Behavioral</option>
-              <option value="Situational">Situational</option>
-              <option value="Application Usage">Application Usage</option>
-            </select>
-          </div>
-
-          {/* Questions List */}
-          <div className="space-y-4">
-            {filteredQuestions.map((q) => (
-              <div
-                key={q.id}
-                className="bg-[#455A64] shadow-md rounded-lg p-6 cursor-pointer"
-                onClick={() =>
-                  setExpandedQuestion(expandedQuestion === q.id ? null : q.id)
-                }
-              >
-                <h3 className="text-lg font-semibold text-[#CFD8DC]">
-                  {q.question}
-                </h3>
-                {expandedQuestion === q.id && (
-                  <p className="text-gray-300 mt-3">{q.answer}</p>
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+                {openFAQ === faq.id ? (
+                  <ChevronUp className="text-blue-600" />
+                ) : (
+                  <ChevronDown className="text-blue-600" />
                 )}
               </div>
-            ))}
-            {filteredQuestions.length === 0 && (
-              <p className="text-gray-300 text-center">
-                No questions found. Try adjusting your search or filters.
-              </p>
-            )}
-          </div>
-        </main>
-
-        {/* Footer */}
-        <footer className="text-[#263238] bg-white py-4 bottom-0">
-          <div className="container mx-auto px-4 text-center">
-            <p>&copy; {new Date().getFullYear()} Career Elevate. All rights reserved.</p>
-          </div>
-        </footer>
+              {openFAQ === faq.id && (
+                <p className="text-gray-600 mt-3 transition-opacity duration-300 ease-in-out">
+                  {faq.answer}
+                </p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </section>
   );
 }
