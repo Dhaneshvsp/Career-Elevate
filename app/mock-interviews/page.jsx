@@ -480,7 +480,7 @@ export default function MockInterviews() {
           {["Home", "About", "Mock Interviews", "Dashboard", "Contact Us"].map((item, index) => (
             <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
               <Link
-                href={item === "Home" ? "/" : `/${item.toLowerCase().replace(" ", "-")}`}
+                href={item === "Home" ? "/homepage" : `/${item.toLowerCase().replace(" ", "-")}`}
                 className={`text-lg font-medium ${item === "Mock Interviews" ? "text-teal-300" : "text-white"} hover:text-teal-300 transition-colors duration-300 relative group`}
               >
                 {item}

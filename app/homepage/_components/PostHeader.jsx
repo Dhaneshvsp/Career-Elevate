@@ -25,8 +25,8 @@ function PostHeader() {
       {[
         { href: "/homepage", label: "Home" },
         { href: "/about", label: "About" },
-        { href: "/contactus", label: "Contact Us" },
-        { href: "/blog", label: "Blog" },
+        { href: "/contact-us", label: "Contact Us" },
+        { href: "/dashboard", label: "Dashboard" },
       ].map((item, index) => (
         <motion.div key={index} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <Link 
