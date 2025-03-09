@@ -65,22 +65,23 @@
 // export default QuestionsSection;
 
 
-import { Lightbulb, Volume2 } from 'lucide-react';
-import React from 'react';
+"use client";
+import React from "react";
+import { Volume2 } from "lucide-react";
 
 function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
   const textToSpeech = (text) => {
-    if ('SpeechSynthesis' in window) {
+    if ("SpeechSynthesis" in window) {
       const speech = new SpeechSynthesisUtterance(text);
       window.speechSynthesis.speak(speech);
     } else {
-      alert('Sorry, Your browser does not support text-to-speech');
+      alert("Sorry, your browser does not support text-to-speech");
     }
   };
 
-  console.log('mockInterviewQuestion: ', mockInterviewQuestion);
+  console.log("mockInterviewQuestion: ", mockInterviewQuestion);
   const questions = Array.isArray(mockInterviewQuestion) ? mockInterviewQuestion : [];
-  console.log('Displaying Questions: ', questions);
+  console.log("Displaying Questions: ", questions);
 
   const isValidQuestion =
     Array.isArray(questions) &&
@@ -89,47 +90,44 @@ function QuestionsSection({ mockInterviewQuestion, activeQuestionIndex }) {
     activeQuestionIndex < questions.length;
 
   return (
-    <div className="p-8 border rounded-lg shadow-lg bg-[#37474F] my-6 max-w-3xl mx-auto text-white">
+    <div className="bg-[#37474F] rounded-lg p-6 shadow-lg text-white">
       {/* Question Navigation */}
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-2 mb-6">
         {questions.length > 0 ? (
           questions.map((_, index) => (
-            <h2
+            <div
               key={index}
-              className={`px-4 py-2 rounded-lg text-sm md:text-base text-center cursor-pointer transition-all duration-200 shadow-md ${
-                activeQuestionIndex === index ? 'bg-[#37474F] text-white' : 'bg-gray-700 border text-gray-300 hover:bg-gray-600'
+              className={`px-3 py-1 rounded-md text-sm font-medium text-center cursor-pointer transition-colors duration-200 ${
+                activeQuestionIndex === index
+                  ? "bg-teal-600 text-white"
+                  : "bg-gray-600 text-gray-200 hover:bg-gray-500"
               }`}
             >
               Q{index + 1}
-            </h2>
+            </div>
           ))
         ) : (
-          <p className="text-gray-300">No questions available.</p>
+          <p className="text-gray-400 text-sm">Questions loading...</p>
         )}
       </div>
 
       {/* Active Question Display */}
-      <div className="mt-6 text-center">
+      <div className="text-center">
         {isValidQuestion ? (
-          <h2 className='text-lg md:text-xl font-semibold text-white'>{questions[activeQuestionIndex].question}</h2>
+          <div>
+            <h2 className="text-lg md:text-xl font-semibold text-white leading-relaxed">
+              {questions[activeQuestionIndex].question}
+            </h2>
+            <div className="mt-4 flex justify-center">
+              <Volume2
+                className="h-6 w-6 text-teal-400 cursor-pointer hover:text-teal-300"
+                onClick={() => textToSpeech(questions[activeQuestionIndex]?.question)}
+              />
+            </div>
+          </div>
         ) : (
-          <p className="text-gray-300">Select a valid question to view its details.</p>
+          <p className="text-gray-400 text-sm">No question selected yet.</p>
         )}
-        <div className="mt-4 flex justify-center">
-          <Volume2
-            className="h-6 w-6 text-orange-300 cursor-pointer hover:text-gray-400"
-            onClick={() => textToSpeech(questions[activeQuestionIndex]?.question)}
-          />
-        </div>
-      </div>
-
-      {/* Note Section */}
-      <div className='border rounded-lg p-6 bg-gray-600 mt-10 text-gray-200 shadow-sm'>
-        <h2 className='flex items-center gap-2 font-semibold text-white'>
-          <Lightbulb className="h-5 w-5 text-yellow-300" />
-          Note:
-        </h2>
-        <p className='text-sm mt-3 text-white]'>{process.env.NEXT_PUBLIC_NOTE}</p>
       </div>
     </div>
   );

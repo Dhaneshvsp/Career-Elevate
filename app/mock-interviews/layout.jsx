@@ -4,7 +4,7 @@ import Header from './_components/Header.jsx'
 export default function DashboardLayout({children}) {
   return (
     <div>
-      <Header/>
+      {/* <Header/> */}
       <div className=' mt-1'>
       {children}
       </div>

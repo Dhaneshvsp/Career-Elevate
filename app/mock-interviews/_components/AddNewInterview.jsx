@@ -37,10 +37,10 @@ function AddNewInterview() {
     e.preventDefault();
     console.log(jobPosition, jobDesc, jobExperience);
 
-    const InputPrompt = "Job position: " + jobPosition + ", Job Description: " + jobDesc + ", Years of Experience: " + jobExperience + " and now based on the given information generate " + process.env.NEXT_PUBLIC_INTERVIEW_QUESTIONS_COUNT + " interview questions with answers in json format";
+    const InputPrompt = "Job position: " + jobPosition + ", Job Description: " + jobDesc + ", Years of Experience: " + jobExperience + " and now based on the given information generate " + process.env.NEXT_PUBLIC_INTERVIEW_QUESTIONS_COUNT + " interview questions with answers in JSON format. Return the result as a JSON array where each element is a JSON object containing a 'question' and an 'answer' key.";
     const res = await chatSession.sendMessage(InputPrompt);
     const MockJsonRes = (res.response.text()).replace(/```json/g, '').replace(/```/g, '');
-    console.log(JSON.parse(MockJsonRes));
+    console.log("In ADD new interview : ",JSON.parse(MockJsonRes));
     setJsonMockResponse(MockJsonRes);
 
     if (MockJsonRes) {
@@ -58,7 +58,7 @@ function AddNewInterview() {
       console.log("Inserted Id:", resp);
       if (resp) {
         setOpenDialog(false);
-        router.push('/dashboard/interview/' + resp[0]?.mockId);
+        router.push('/mock-interviews/interview/' + resp[0]?.mockId);
       }
     } else {
       console.log("ERROR");

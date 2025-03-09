@@ -15,13 +15,13 @@
 //     <h2 className='mt-3 text-3xl'>Career<span className='bg-black text-white p-0.6 rounded-lg'>Elevate</span></h2></div>
 //     <ul className=' hidden md:flex gap-6 items-end'>
 //       <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//         ${path=='/dashboard'&&'text-primary font-bold'}`}>Dashboard</li>
+//         ${path=='/mock-interviews'&&'text-primary font-bold'}`}>mock-interviews</li>
 //       <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//         ${path=='/dashboard/questions'&&'text-primary font-bold'}`}>Questions</li>
+//         ${path=='/mock-interviews/questions'&&'text-primary font-bold'}`}>Questions</li>
 //       {/* <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//         ${path=='/dashboard/upgrade'&&'text-primary font-bold'}`}>Upgrade</li> */}
+//         ${path=='/mock-interviews/upgrade'&&'text-primary font-bold'}`}>Upgrade</li> */}
 //       <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//         ${path=='/dashboard/howitworks'&&'text-primary font-bold'}`}>How it works?</li>
+//         ${path=='/mock-interviews/howitworks'&&'text-primary font-bold'}`}>How it works?</li>
 //     </ul>
 //     <UserButton/>
 //     </div>
@@ -52,20 +52,20 @@
 //       </div>
 //       <ul className='hidden md:flex gap-6 items-end'>
 //         <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//           ${path === '/dashboard' ? 'text-primary font-bold' : ''}`}>
-//           <Link href="/dashboard">Dashboard</Link>
+//           ${path === '/mock-interviews' ? 'text-primary font-bold' : ''}`}>
+//           <Link href="/mock-interviews">mock-interviews</Link>
 //         </li>
 //         <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//           ${path === '/dashboard/questions' ? 'text-primary font-bold' : ''}`}>
-//           <Link href="/dashboard/questions">Questions</Link>
+//           ${path === '/mock-interviews/questions' ? 'text-primary font-bold' : ''}`}>
+//           <Link href="/mock-interviews/questions">Questions</Link>
 //         </li>
 //         <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//           ${path === '/dashboard/howitworks' ? 'text-primary font-bold' : ''}`}>
-//           <Link href="/dashboard/howitworks">How it works?</Link>
+//           ${path === '/mock-interviews/howitworks' ? 'text-primary font-bold' : ''}`}>
+//           <Link href="/mock-interviews/howitworks">How it works?</Link>
 //         </li>
 //         <li className={`hover:text-primary hover:font-bold transition-all cursor-pointer
-//           ${path === '/dashboard/InterviewList' ? 'text-primary font-bold' : ''}`}>
-//           <Link href="/dashboard/InterviewList">Previous Interviews</Link>
+//           ${path === '/mock-interviews/InterviewList' ? 'text-primary font-bold' : ''}`}>
+//           <Link href="/mock-interviews/InterviewList">Previous Interviews</Link>
 //         </li>
 //       </ul>
 //       <div className="scale-150 origin-center"> {/* Increase size by 1.5x */}
@@ -106,17 +106,17 @@ function Header() {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden md:flex gap-6">
+        <ul className="hidden md:flex justify-between gap-6">
           {[
-            { name: "Dashboard", path: "/dashboard" },
-            { name: "Questions", path: "/dashboard/questions" },
-            { name: "How it works?", path: "/dashboard/howitworks" },
-            { name: "Previous Interviews", path: "/dashboard/InterviewList" },
+            { name: "mock-interviews", path: "/mock-interviews" },
+            { name: "FAQs", path: "/mock-interviews/questions" },
+            // { name: "How it works?", path: "/mock-interviews/howitworks" },
+            { name: "Previous Interviews", path: "/mock-interviews/InterviewList" },
           ].map((item) => (
             <li
               key={item.path}
-              className={`hover:text-primary hover:font-bold transition-all cursor-pointer ${
-                path === item.path ? "text-primary font-bold" : ""
+              className={` hover:font-bold transition-all cursor-pointer ${
+                path === item.path ? "bg-black text-white py-2 px-2 rounded-full" : ""
               }`}
             >
               <Link href={item.path}>{item.name}</Link>
@@ -143,10 +143,10 @@ function Header() {
         <div className="md:hidden absolute top-16 left-0 w-full bg-secondary text-white shadow-lg p-4">
           <ul className="flex flex-col gap-4 text-lg">
             {[
-              { name: "Dashboard", path: "/dashboard" },
-              { name: "Questions", path: "/dashboard/questions" },
-              { name: "How it works?", path: "/dashboard/howitworks" },
-              { name: "Previous Interviews", path: "/dashboard/InterviewList" },
+              { name: "mock-interviews", path: "/mock-interviews" },
+              { name: "Questions", path: "/mock-interviews/questions" },
+              { name: "How it works?", path: "/mock-interviews/howitworks" },
+              { name: "Previous Interviews", path: "/mock-interviews/InterviewList" },
             ].map((item) => (
               <li
                 key={item.path}
