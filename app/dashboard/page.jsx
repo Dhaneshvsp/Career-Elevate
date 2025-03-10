@@ -33,7 +33,7 @@ export default function Dashboard() {
     },
     {
       title: "Take a Quiz",
-      desc: "Earn certifications to boost your career.",
+      desc: "Test and Validate your Knowledge.",
       href: "/quizzes",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
       icon: "📜",
@@ -102,7 +102,7 @@ export default function Dashboard() {
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold text-blue-600">2</p>
-                <p className="text-gray-600">Certifications Earned</p>
+                <p className="text-gray-600">Quizzes Completed</p>
               </div>
             </div>
           </motion.div>
