@@ -137,6 +137,7 @@ import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import PostHeader from "./_components/PostHeader";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
 
 export default function Home() {
   const router = useRouter();
@@ -206,7 +207,7 @@ export default function Home() {
             className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-indigo-600"
             variants={itemVariants}
           >
-            Welcome Back to CareerElevate
+            <TypingAnimation>Welcome Back to CareerElevate</TypingAnimation>
           </motion.h1>
           <motion.p
             className="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto"
