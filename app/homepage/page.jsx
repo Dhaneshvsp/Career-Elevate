@@ -131,14 +131,52 @@
 
 
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import PostHeader from "./_components/PostHeader";
 
 export default function Home() {
   const router = useRouter();
+  const { user, isLoaded } = useUser();
+
+  // Sync user with the database when they sign in
+  useEffect(() => {
+    if (!isLoaded) {
+      console.log("[HomePage] User data not yet loaded");
+      return;
+    }
+
+    if (!user) {
+      console.log("[HomePage] No user signed in");
+      return;
+    }
+
+    const syncUser = async () => {
+      try {
+        console.log("[HomePage] Syncing user with database, clerkId:", user.id);
+        const response = await fetch("/api/sync-user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          console.log("[HomePage] User sync result:", result);
+        } else {
+          console.error("[HomePage] Error syncing user:", result.error);
+        }
+      } catch (error) {
+        console.error("[HomePage] Error syncing user:", error);
+      }
+    };
+
+    syncUser();
+  }, [user, isLoaded]);
 
   // Animation Variants
   const containerVariants = {
@@ -153,7 +191,7 @@ export default function Home() {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Header */}
-      <PostHeader/>
+      <PostHeader />
 
       {/* Hero Section */}
       <section className="text-center py-24 px-6 bg-gradient-to-r from-teal-50 via-blue-50 to-indigo-50 relative overflow-hidden">
@@ -219,7 +257,7 @@ export default function Home() {
             >
               <div className="text-teal-600 text-5xl mb-6">{feature.icon}</div>
               <h3 className="text-2xl font-semibold text-gray-900 mb-4">{feature.title}</h3>
-              <p className="text-gray-600 text-base leading-relaxed">{feature.desc}</p> {/* Fixed: Changed desc to feature.desc */}
+              <p className="text-gray-600 text-base leading-relaxed">{feature.desc}</p>
             </motion.div>
           ))}
         </motion.div>

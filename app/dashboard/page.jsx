@@ -34,7 +34,7 @@ export default function Dashboard() {
     {
       title: "Take a Quiz",
       desc: "Earn certifications to boost your career.",
-      href: "/quizzes",
+      href: "/quizmodule",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60",
       icon: "📜",
     },
