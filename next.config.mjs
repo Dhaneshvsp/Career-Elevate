@@ -1,4 +1,3 @@
-import { loadResumeData } from './app/resume-builder/_utils/storage';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
