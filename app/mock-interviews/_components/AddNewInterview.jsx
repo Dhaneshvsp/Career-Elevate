@@ -143,7 +143,6 @@
 
 // export default AddNewInterview;
 
-"use client"
 
 // import React, { useState } from 'react';
 // import {
@@ -411,11 +410,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { chatSession } from '@/utils/GeminiAIModal';
 import { LoaderCircle } from 'lucide-react';
-import { db } from '@/utils/db';
-import { MockInterview } from '@/utils/schema';
-import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/nextjs';
-import moment from 'moment/moment';
 import { useRouter } from 'next/navigation';
 import { BorderBeam } from '@/components/magicui/border-beam';
 import Fuse from 'fuse.js';
@@ -434,7 +429,6 @@ function AddNewInterview() {
   const { user } = useUser();
   const router = useRouter();
 
-  // Predefined job roles for the dropdown
   const predefinedRoles = [
     'Full Stack Developer',
     'Frontend Developer',
@@ -446,24 +440,18 @@ function AddNewInterview() {
     'Software Engineer',
   ];
 
-  // Initialize Fuse.js for fuzzy matching
   const fuse = new Fuse(predefinedRoles, {
     threshold: 0.4,
     includeScore: true,
   });
 
-  // Handle job position change with fuzzy matching for custom input
   const handleJobPositionChange = (value) => {
-    setJobPosition(value); // Keep the raw value, including spaces
-
-    // Only trim for comparison/matching purposes, not for state
+    setJobPosition(value);
     const trimmedValue = value.trim();
-
     if (predefinedRoles.includes(trimmedValue)) {
       setSuggestion(null);
       return;
     }
-
     const result = fuse.search(trimmedValue);
     if (result.length > 0 && result[0].score < 0.4) {
       setSuggestion(result[0].item);
@@ -472,13 +460,11 @@ function AddNewInterview() {
     }
   };
 
-  // Accept the fuzzy match suggestion
   const acceptSuggestion = () => {
     setJobPosition(suggestion);
     setSuggestion(null);
   };
 
-  // Handle dropdown selection
   const handleRoleSelection = (value) => {
     if (value === 'custom') {
       setIsCustomRole(true);
@@ -491,11 +477,9 @@ function AddNewInterview() {
     }
   };
 
-  // Handle dialog close (cross button, Esc, etc.)
   const handleDialogClose = (open) => {
     setOpenDialog(open);
     if (!open) {
-      // Reset form fields when dialog closes
       setJobPosition('');
       setJobDesc('');
       setJobExperience('');
@@ -526,36 +510,38 @@ function AddNewInterview() {
       Ensure questions match the specified difficulty level and are relevant to the job position and technology stack.`;
 
     try {
+      // Generate questions with Gemini AI
       const res = await chatSession.sendMessage(InputPrompt);
       const rawResponse = res.response.text();
       const cleanedResponse = rawResponse
         .replace(/```json/g, '')
         .replace(/```/g, '')
         .trim();
-
       const parsedJson = JSON.parse(cleanedResponse);
       setJsonMockResponse(parsedJson);
 
-      const resp = await db.insert(MockInterview)
-        .values({
-          mockId: uuidv4(),
-          jsonMockResp: JSON.stringify(parsedJson),
+      // Send data to API route
+      const apiResponse = await fetch('/api/create-interview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jsonMockResp: parsedJson,
           jobPosition: finalJobPosition,
-          jobDesc: jobDesc,
-          jobExperience: jobExperience,
-          createdBy: user?.primaryEmailAddress?.emailAddress,
-          createdAt: moment().format('DD-MM-yyyy'),
-        })
-        .returning({ mockId: MockInterview.mockId });
+          jobDesc,
+          jobExperience,
+        }),
+      });
 
-      console.log("Inserted Id:", resp);
-      if (resp) {
-        setOpenDialog(false);
-        router.push('/mock-interviews/interview/' + resp[0]?.mockId);
+      if (!apiResponse.ok) {
+        throw new Error('Failed to save interview');
       }
+
+      const { mockId } = await apiResponse.json();
+      setOpenDialog(false);
+      router.push('/mock-interviews/interview/' + mockId);
     } catch (error) {
       console.error("Error processing response:", error);
-      alert("Failed to generate interview questions. Please check your inputs and try again.");
+      alert("Failed to generate or save interview. Please try again.");
     } finally {
       setLoading(false);
     }
