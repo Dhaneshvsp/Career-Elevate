@@ -1,3 +1,4 @@
+//resume-builder/_Components/KeywordOptimizer.jsx:
 "use client";
 import React, { useState, useEffect } from "react";
 import { suggestKeywords } from "../_data/keywords.js"; // Ensure correct path

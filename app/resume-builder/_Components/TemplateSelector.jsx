@@ -1,3 +1,4 @@
+//resume-builder/_Components/TemplateSelector.jsx:
 "use client";
 import { templates } from "../_data/templates"; // Adjust path as needed
 import { CheckCircle2 } from "lucide-react"; // Added for selection indicator

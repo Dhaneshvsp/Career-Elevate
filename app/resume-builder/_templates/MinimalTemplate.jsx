@@ -1,3 +1,4 @@
+//resume-builder/_templates/MinimalTemplate.jsx:
 import React from 'react';
 import { formatDate } from '../_utils/helpers';
 
