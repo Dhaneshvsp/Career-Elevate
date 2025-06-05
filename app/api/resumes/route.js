@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/api/resumes/route.js
 // import { NextResponse } from 'next/server';
 // import { db } from '@/utils/db';
 // import { Resumes } from '@/utils/schema';

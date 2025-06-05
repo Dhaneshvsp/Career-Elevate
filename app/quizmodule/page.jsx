@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/quizmodule/page.jsx
 // //quizmodule/page.jsx:
 // "use client";
 // import HomeCard from "@/components/quiz/HomeCard";

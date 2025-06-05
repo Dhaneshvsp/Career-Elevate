@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/questions/page.jsx
 // "use client"
 // import Head from "next/head";
 // import { useState } from "react";

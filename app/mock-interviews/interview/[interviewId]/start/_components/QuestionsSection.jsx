@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/interview/[interviewId]/start/_components/QuestionsSection.jsx
 // import { Lightbulb, Volume2 } from 'lucide-react';
 
 // import React from 'react';

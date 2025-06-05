@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/howitworks/page.jsx
 // import Head from "next/head";
 
 // export default function HowItWorks() {

@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_utils/storage.js
 "use client"; // Only needed if imported into a server component
 import { v4 as uuidv4 } from "uuid";
 

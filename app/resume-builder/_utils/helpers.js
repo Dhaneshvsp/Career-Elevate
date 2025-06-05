@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_utils/helpers.js
 "use client"; // Only needed if this becomes a standalone module imported into a server component
 import { v4 as uuidv4 } from "uuid";
 
@@ -74,3 +75,4 @@ export const debounce = (func, waitFor) => {
     timeout = setTimeout(() => func(...args), waitFor);
   };
 };
+

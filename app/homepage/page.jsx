@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/homepage/page.jsx
 // "use client"
 // import React from "react";
 // import { useRouter } from "next/navigation";

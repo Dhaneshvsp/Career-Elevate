@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/quizmodule/categories/[categoryId]/page.jsx
 // //quizmodule/categories/page.jsx:
 // import { auth } from "@clerk/nextjs/server";
 // import { db } from "@/utils/db";

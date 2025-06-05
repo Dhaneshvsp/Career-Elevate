@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/api/create-interview/route.js
 // pages/api/create-interview.js
 import { db } from '@/utils/db';
 import { MockInterview } from '@/utils/schema';

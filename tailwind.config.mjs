@@ -12,6 +12,17 @@ export default {
 			sans: ["Inter", "system-ui", "sans-serif"],
 		  },
   		colors: {
+			teal: {
+				200: '#99F6E4',
+				600: '#14B8A6',
+			  },
+			  coral: {
+				600: '#F87171',
+			  },
+			navy: {
+				600: '#1E3A8A',
+				800: '#1E1B4B',
+			  },
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

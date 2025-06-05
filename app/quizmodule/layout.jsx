@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/quizmodule/layout.jsx
 // import { GlobalContextProvider } from "@/context/globalContext";
 
 // export default function RootLayout({ children }) {

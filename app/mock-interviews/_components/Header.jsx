@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/_components/Header.jsx
 // "use client"
 // import { UserButton } from '@clerk/nextjs'
 // import Image from 'next/image'

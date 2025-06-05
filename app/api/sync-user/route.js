@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/api/sync-user/route.js
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/utils/db";
 import { users } from "@/utils/schema";

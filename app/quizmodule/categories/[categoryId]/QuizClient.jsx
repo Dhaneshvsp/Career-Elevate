@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/quizmodule/categories/[categoryId]/QuizClient.jsx
 // //quizmodule/categories/QuizClient.jsx
 // "use client";
 

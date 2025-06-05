@@ -1,4 +1,4 @@
-//resume-builder/_templates/MinimalTemplate.jsx:
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_templates/MinimalTemplate.jsx
 import React from 'react';
 import { formatDate } from '../_utils/helpers';
 
@@ -6,41 +6,41 @@ const MinimalTemplate = ({ resumeData }) => {
   const { personalInfo, summary, workExperience, education, skills, certifications, projects } = resumeData;
 
   return (
-    <div className="p-8 font-sans text-gray-800 max-w-4xl mx-auto">
-      <header className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">
+    <div className="resume-container w-[794px] h-[1123px] mx-auto p-4 font-sans text-gray-800">
+      <header className="text-center mb-4">
+        <h1 className="text-2xl font-bold text-gray-900 mb-1">
           {personalInfo.firstName} {personalInfo.lastName}
         </h1>
-        <div className="text-gray-600 space-x-3">
+        <div className="text-gray-600 text-xs space-x-1">
           {personalInfo.email && <span>{personalInfo.email}</span>}
-          {personalInfo.phone && <span>• {personalInfo.phone}</span>}
-          {personalInfo.address && <span>• {personalInfo.address}</span>}
+          {personalInfo.phone && <span> • {personalInfo.phone}</span>}
+          {personalInfo.address && <span> • {personalInfo.address}</span>}
         </div>
       </header>
 
       {summary && (
-        <section className="mb-6">
-          <p className="text-gray-700 text-center">{summary}</p>
+        <section className="mb-4">
+          <p className="text-gray-700 text-xs text-center line-clamp-5">{summary}</p>
         </section>
       )}
 
-      <hr className="my-6 border-gray-200" />
+      <hr className="my-3 border-gray-200" />
 
       {workExperience.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wider">Experience</h2>
-          <div className="space-y-5">
+        <section className="mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 uppercase tracking-wider">Experience</h2>
+          <div className="space-y-2">
             {workExperience.map((experience) => (
-              <div key={experience.id}>
+              <div key={experience.id} className="text-xs">
                 <div className="flex justify-between items-baseline">
                   <h3 className="font-semibold text-gray-800">{experience.position}</h3>
-                  <span className="text-gray-600 text-sm">
+                  <span className="text-gray-600">
                     {formatDate(experience.startDate)} -{' '}
-                    {experience.current ? 'Present' : formatDate(experience.endDate)}
+                    {experience.endDate ? formatDate(experience.endDate) : 'Present'}
                   </span>
                 </div>
                 <div className="text-gray-700 italic">{experience.company}</div>
-                <p className="mt-2 text-gray-600">{experience.description}</p>
+                <p className="mt-1 text-gray-600 line-clamp-3">{experience.description}</p>
               </div>
             ))}
           </div>
@@ -48,21 +48,19 @@ const MinimalTemplate = ({ resumeData }) => {
       )}
 
       {education.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wider">Education</h2>
-          <div className="space-y-5">
+        <section className="mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 uppercase tracking-wider">Education</h2>
+          <div className="space-y-2 text-xs">
             {education.map((edu) => (
               <div key={edu.id}>
                 <div className="flex justify-between items-baseline">
                   <h3 className="font-semibold text-gray-800">{edu.degree}</h3>
-                  <span className="text-gray-600 text-sm">
+                  <span className="text-gray-600">
                     {formatDate(edu.startDate)} -{' '}
-                    {edu.current ? 'Present' : formatDate(edu.endDate)}
+                    {edu.endDate ? formatDate(edu.endDate) : 'Present'}
                   </span>
                 </div>
                 <div className="text-gray-700 italic">{edu.institution}</div>
-                {edu.field && <div className="text-gray-600">{edu.field}</div>}
-                {edu.description && <p className="mt-2 text-gray-600">{edu.description}</p>}
               </div>
             ))}
           </div>
@@ -70,11 +68,14 @@ const MinimalTemplate = ({ resumeData }) => {
       )}
 
       {skills.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wider">Skills</h2>
-          <div className="flex flex-wrap gap-2">
+        <section className="mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 uppercase tracking-wider">Skills</h2>
+          <div className="flex flex-wrap gap-1 text-xs">
             {skills.map((skill) => (
-              <span key={skill.id} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">
+              <span
+                key={skill.id}
+                className="bg-gray-100 text-gray-700 px-2 py-0.5 rounded-full"
+              >
                 {skill.name}
               </span>
             ))}
@@ -83,19 +84,14 @@ const MinimalTemplate = ({ resumeData }) => {
       )}
 
       {certifications.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wider">Certifications</h2>
-          <div className="space-y-5">
+        <section className="mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 uppercase tracking-wider">Certifications</h2>
+          <div className="space-y-1 text-xs">
             {certifications.map((cert) => (
               <div key={cert.id}>
                 <h3 className="font-semibold text-gray-800">{cert.name}</h3>
                 <div className="text-gray-700 italic">{cert.issuer}</div>
-                <div className="text-gray-600 text-sm">{formatDate(cert.date)}</div>
-                {cert.url && (
-                  <a href={cert.url} className="text-blue-600 hover:underline text-sm">
-                    View Certification
-                  </a>
-                )}
+                <div className="text-gray-600">{formatDate(cert.date)}</div>
               </div>
             ))}
           </div>
@@ -103,24 +99,19 @@ const MinimalTemplate = ({ resumeData }) => {
       )}
 
       {projects.length > 0 && (
-        <section className="mb-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4 uppercase tracking-wider">Projects</h2>
-          <div className="space-y-5">
+        <section className="mb-4">
+          <h2 className="text-lg font-semibold text-gray-900 mb-2 uppercase tracking-wider">Projects</h2>
+          <div className="space-y-2 text-xs">
             {projects.map((project) => (
               <div key={project.id}>
                 <div className="flex justify-between items-baseline">
                   <h3 className="font-semibold text-gray-800">{project.name}</h3>
-                  <span className="text-gray-600 text-sm">
+                  <span className="text-gray-600">
                     {formatDate(project.startDate)} -{' '}
-                    {project.current ? 'Present' : formatDate(project.endDate)}
+                    {project.endDate ? formatDate(project.endDate) : 'Present'}
                   </span>
                 </div>
-                <p className="mt-2 text-gray-600">{project.description}</p>
-                {project.url && (
-                  <a href={project.url} className="text-blue-600 hover:underline text-sm">
-                    View Project
-                  </a>
-                )}
+                <p className="mt-1 text-gray-600 line-clamp-3">{project.description}</p>
               </div>
             ))}
           </div>

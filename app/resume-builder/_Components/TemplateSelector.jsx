@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_Components/TemplateSelector.jsx
 //resume-builder/_Components/TemplateSelector.jsx:
 "use client";
 import { templates } from "../_data/templates"; // Adjust path as needed

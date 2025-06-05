@@ -1,3 +1,5 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/(auth)/sign-in/[[...sign-in]]/page.jsx
+// app/%28auth%29/sign-in/%5B%5B...sign-in%5D%5D/page.jsx
 import { SignIn } from '@clerk/nextjs'
 
 export default function Page() {

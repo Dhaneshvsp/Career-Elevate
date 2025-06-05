@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_Components/ResumePreview.jsx
 // "use client"; // Mark as a Client Component
 
 // import React, { useState, useRef, useEffect } from "react";
@@ -147,8 +148,13 @@ import { Download, Printer } from "lucide-react";
 import ProfessionalTemplate from "../_templates/ProfessionalTemplate";
 import CreativeTemplate from "../_templates/CreativeTemplate";
 import MinimalTemplate from "../_templates/MinimalTemplate";
+import MinimalistTemplate from "../_templates/MinimalistTemplate";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import GeometricTemplate from "../_templates/GeometricTemplate";
+import TimelineTemplate from "../_templates/TimelineTemplate";
+import CorporateTemplate from "../_templates/CorporateTemplate";
+import PortfolioTemplate from "../_templates/PortfolioTemplate";
 
 const ResumePreview = ({ resumeData }) => {
   const [scale, setScale] = useState(1);
@@ -178,6 +184,16 @@ const ResumePreview = ({ resumeData }) => {
         return <CreativeTemplate resumeData={resumeData} />;
       case "minimal":
         return <MinimalTemplate resumeData={resumeData} />;
+      case "minimalist":
+        return <MinimalistTemplate resumeData={resumeData}/>;
+      case "bold-geometric":
+        return <GeometricTemplate resumeData={resumeData}/>;
+      case "timeline-centric":
+        return <TimelineTemplate resumeData={resumeData}/>;
+      case "corporate-classic":
+        return <CorporateTemplate resumeData={resumeData}/>;
+      case "portfolio-showcase":
+        return <PortfolioTemplate resumeData={resumeData}/>
       default:
         return <ProfessionalTemplate resumeData={resumeData} />;
     }

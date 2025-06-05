@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/InterviewList/page.jsx
 import React from 'react'
 import InterviewList from '../_components/InterviewList'
 

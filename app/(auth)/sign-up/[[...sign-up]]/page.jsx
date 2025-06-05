@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/(auth)/sign-up/[[...sign-up]]/page.jsx
 "use client"; // Client component for Clerk
 
 import { SignUp } from '@clerk/nextjs';
