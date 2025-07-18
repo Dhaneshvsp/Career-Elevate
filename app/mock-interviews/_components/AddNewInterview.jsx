@@ -709,11 +709,34 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { chatSession } from '@/utils/GeminiAIModal';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 import { LoaderCircle } from 'lucide-react';
+import { db } from '@/utils/db';
+import { MockInterview } from '@/utils/schema';
+import { v4 as uuidv4 } from 'uuid';
 import { useUser } from '@clerk/nextjs';
+import moment from 'moment';
 import { useRouter } from 'next/navigation';
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-2.0-flash-exp",
+  generationConfig: {
+    temperature: 1,
+    topP: 0.95,
+    topK: 40,
+    maxOutputTokens: 8192,
+    responseMimeType: "text/plain",
+  },
+});
 
 function AddNewInterview() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -723,6 +746,7 @@ function AddNewInterview() {
   const [difficultyLevel, setDifficultyLevel] = useState('medium');
   const [numQuestions, setNumQuestions] = useState('5');
   const [loading, setLoading] = useState(false);
+  const [jsonMockResponse, setJsonMockResponse] = useState([]);
   const { user } = useUser();
   const router = useRouter();
 
@@ -730,48 +754,42 @@ function AddNewInterview() {
     e.preventDefault();
     setLoading(true);
 
-    const InputPrompt = `Generate ${numQuestions} interview questions and answers in JSON format based on the following details:
-    - Job Position: ${jobPosition}
-    - Technology Stack: ${jobDesc}
-    - Years of Experience: ${jobExperience}
-    - Difficulty Level: ${difficultyLevel} (easy, medium, or hard)
-    
-    Return a JSON array where each element is an object containing:
-    - 'question': a relevant interview question
-    - 'answer': a detailed and accurate answer
-    
-    Ensure questions match the specified difficulty level and are relevant to the job position and technology stack.`;
+    const prompt = `Generate ${numQuestions} interview questions and answers in JSON format based on the following details:
+- Job Position: ${jobPosition}
+- Technology Stack: ${jobDesc}
+- Years of Experience: ${jobExperience}
+- Difficulty Level: ${difficultyLevel} (easy, medium, or hard)
+
+Return a JSON array where each element is an object containing:
+- 'question': a relevant interview question
+- 'answer': a detailed and accurate answer
+
+Ensure questions match the specified difficulty level and are relevant to the job position and technology stack.`;
 
     try {
-      const res = await chatSession.sendMessage(InputPrompt);
-      const raw = await res.response.text();
-      const cleaned = raw.replace(/```json/g, '').replace(/```/g, '').trim();
+      const chat = model.startChat();
+      const result = await chat.sendMessage(prompt);
+      const raw = await result.response.text();
+
+      const cleaned = raw.replace(/```json|```/g, '').trim();
       const parsed = JSON.parse(cleaned);
+      setJsonMockResponse(parsed);
 
-      const response = await fetch('/api/create-interview', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          jobPosition,
-          jobDesc,
-          jobExperience,
-          createdBy: user?.primaryEmailAddress?.emailAddress,
-          questions: parsed,
-        }),
-      });
+      const response = await db.insert(MockInterview).values({
+        mockId: uuidv4(),
+        jsonMockResp: JSON.stringify(parsed),
+        jobPosition,
+        jobDesc,
+        jobExperience,
+        createdBy: user?.primaryEmailAddress?.emailAddress,
+        createdAt: moment().format('DD-MM-yyyy'),
+      }).returning({ mockId: MockInterview.mockId });
 
-      const data = await response.json();
-
-      if (data.success) {
-        setOpenDialog(false);
-        router.push('/mock-interviews/interview/' + data.mockId);
-      } else {
-        console.error("Interview creation failed:", data.error);
-        alert("Failed to save interview. Check console for error.");
-      }
+      setOpenDialog(false);
+      router.push('/mock-interviews/interview/' + response[0]?.mockId);
     } catch (err) {
-      console.error("Error generating questions or creating interview:", err);
-      alert("Something went wrong. Please try again.");
+      console.error("Mock Interview Generation Failed:", err.message);
+      alert("Failed to generate mock interview. Check console for details.");
     } finally {
       setLoading(false);
     }
@@ -780,10 +798,10 @@ function AddNewInterview() {
   return (
     <div className="relative">
       <div
-        className="p-3 border rounded-full text-center bg-gray-700 text-white hover:scale-110 hover:shadow-md hover:cursor-pointer transition-all"
+        className='p-3 border rounded-full text-center bg-gray-700 text-white hover:scale-110 hover:shadow-md hover:cursor-pointer transition-all'
         onClick={() => setOpenDialog(true)}
       >
-        <h2 className="text-lg">+ Start New Interview</h2>
+        <h2 className='text-lg'>+ Start New Interview</h2>
       </div>
 
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -792,7 +810,9 @@ function AddNewInterview() {
             <DialogTitle className="text-2xl">Tell us more about your Job interviewing</DialogTitle>
             <DialogDescription asChild>
               <form onSubmit={onSubmit}>
-                <div className="my-1">Add Details about job position, Your Skills and Years of Experience</div>
+                <div className='my-1'>
+                  Add Details about job position, Your Skills and Years of Experience
+                </div>
                 <div className="mt-7 my-3">
                   <label>Job role</label>
                   <Input
@@ -855,7 +875,7 @@ function AddNewInterview() {
                     {loading ? (
                       <>
                         <LoaderCircle className="animate-spin mr-2" />
-                        Generating...
+                        Generating
                       </>
                     ) : (
                       'Start Interview'
@@ -872,3 +892,4 @@ function AddNewInterview() {
 }
 
 export default AddNewInterview;
+
