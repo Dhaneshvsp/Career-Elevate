@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/dashboard/page.jsx
 "use client";
 import React from "react";
 import { motion } from "framer-motion";

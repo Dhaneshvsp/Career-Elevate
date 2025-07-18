@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/page.js
 // "use client"
 // import { Button } from '@/components/ui/button';
 // import Head from 'next/head';

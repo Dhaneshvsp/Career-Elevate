@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/api/interviews/route.js
 import { db } from "@/utils/db"; // Import Drizzle ORM instance
 import { MockInterview } from "@/utils/schema"; // Import schema
 import { eq, desc } from "drizzle-orm";

@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/layout.jsx
 import React from 'react'
 import Header from './_components/Header.jsx'
 

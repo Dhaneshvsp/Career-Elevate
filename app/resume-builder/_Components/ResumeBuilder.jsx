@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_Components/ResumeBuilder.jsx
 // // app/resume-builder/_Components/ResumeBuilder.jsx
 // "use client";
 // import { useState, useEffect } from "react";

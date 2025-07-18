@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/homepage/_components/Header.jsx
 "use client"; // Mark as client component for App Router
 
 import { useState } from 'react';

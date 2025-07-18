@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/api/categories/route.js
 import { db } from "@/utils/db";
 import { categories } from "@/utils/schema";
 import { eq } from "drizzle-orm";

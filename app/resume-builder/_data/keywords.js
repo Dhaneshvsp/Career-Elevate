@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/resume-builder/_data/keywords.js
 export const industryKeywords = {
     software: [
       'React', 'JavaScript', 'TypeScript', 'Node.js', 'Python', 'Java', 'C#', 'AWS', 'Azure', 

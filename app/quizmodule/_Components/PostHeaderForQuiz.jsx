@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/quizmodule/_Components/PostHeaderForQuiz.jsx
 import React from 'react'
 import { motion } from "framer-motion";
 import Link from "next/link";

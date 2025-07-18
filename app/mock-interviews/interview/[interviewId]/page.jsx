@@ -1,3 +1,4 @@
+// filepath: C:/Users/DELL/Desktop/web_project/career_elevate/app/mock-interviews/interview/[interviewId]/page.jsx
 // "use client";
 
 // import { Button } from '@/components/ui/button';
