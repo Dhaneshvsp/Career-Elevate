@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "CareerElevate",
     description: "Your all-in-one platform for interview preparation and career growth.",
-    url: "https://careerelevate.vercel.app",
+    url: "https://careerelevate.vercel.app/logo.svg",
     siteName: "CareerElevate",
     images: [
       {
