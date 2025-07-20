@@ -87,7 +87,7 @@ export default function Dashboard() {
           </motion.p>
 
           {/* Progress Overview */}
-          <motion.div
+          {/* <motion.div
             className="bg-white rounded-xl shadow-lg p-6 mb-12 border-t-4 border-teal-500"
             variants={itemVariants}
           >
@@ -106,7 +106,7 @@ export default function Dashboard() {
                 <p className="text-gray-600">Quizzes Completed</p>
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Feature Cards */}
           <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={containerVariants}>

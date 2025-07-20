@@ -128,7 +128,7 @@ export default function About() {
         </section>
 
         {/* Meet the Team */}
-        <section className="mb-16">
+        {/* <section className="mb-16">
           <motion.h2
             className="text-3xl font-semibold text-gray-900 mb-6 text-center"
             variants={itemVariants}
@@ -182,7 +182,7 @@ export default function About() {
               </motion.div>
             ))}
           </motion.div>
-        </section>
+        </section> */}
 
         {/* Call to Action */}
         <motion.div
