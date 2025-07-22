@@ -38,7 +38,7 @@ export const metadata = {
     title: "CareerElevate",
     description: "Ace your interviews and level up your career.",
     creator: "@careerelevate",
-    images: ["https://careerelevate.com/twitter-preview.png"],
+    images: ["https://careerelevate.vercel.app/logo.svg"],
   },
 };
 

@@ -91,7 +91,7 @@ export const users = pgTable("users", {
 });
 
 
-//   export const QuizCategory = pgTable("quiz_category", {
+
 //     id: serial("id").primaryKey(),
 //     name: varchar("name", { length: 255 }).notNull().unique()
 // });

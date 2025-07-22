@@ -6,7 +6,7 @@ import { db } from "@/utils/db";
 import { categories, users, categoryStats } from "@/utils/schema";
 import { eq, and } from "drizzle-orm";
 
-// ✅ Get or Create User
+// Get or Create User
 export async function getOrCreateUser() {
   const { userId, user } = auth();
   if (!userId) return null;
@@ -22,7 +22,7 @@ export async function getOrCreateUser() {
   return newUser[0];
 }
 
-// ✅ Fetch all categories
+// Fetch all categories
 export async function getCategories() {
   try {
     const categoryList = await db.select().from(categories);
@@ -33,7 +33,7 @@ export async function getCategories() {
   }
 }
 
-// ✅ Fetch user details
+// Fetch user details
 export async function getUser() {
   try {
     const authData = await auth();
@@ -56,7 +56,7 @@ export async function getUser() {
   }
 }
 
-// ✅ Register user
+// Register user
 export async function registerUser() {
   try {
     const authData = await auth();
@@ -88,7 +88,7 @@ export async function registerUser() {
   }
 }
 
-// ✅ Start a quiz
+// Start a quiz
 export async function startQuiz(categoryId) {
   try {
     console.log("[startQuiz] Starting with categoryId:", categoryId);
@@ -167,7 +167,7 @@ export async function startQuiz(categoryId) {
   }
 }
 
-// ✅ Finish a quiz
+// Finish a quiz
 export async function finishQuiz(categoryId, quizId, score, responses) {
   console.log("[finishQuiz] Function called with:", { categoryId, quizId, score, responses });
 
