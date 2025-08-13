@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CareerElevate 🚀
 
-## Getting Started
+CareerElevate is a comprehensive career development platform designed to empower users with tools for mock interviews, professional resume building, and skill-enhancing quizzes.
 
-First, run the development server:
+![Welcome Screen](https://github.com/Dhaneshvsp/Career-Elevate/blob/main/assests/Screenshot_13-8-2025_175622_careerelevate.vercel.app.jpeg?raw=true)
+![Dashboard](https://github.com/Dhaneshvsp/Career-Elevate/blob/main/assests/Screenshot_13-8-2025_175651_careerelevate.vercel.app.jpeg?raw=true)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 About The Project
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+This project aims to solve the common challenges job seekers face. Many struggle with crafting professional resumes, lack access to structured certification preparation tools, and have limited opportunities to practice for interviews. CareerElevate addresses these issues by integrating user-friendly tools for resume building, skill validation, and interview preparation into one seamless platform.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ✨ Key Features
 
-To learn more about Next.js, take a look at the following resources:
+### 📝 Resume Builder
+* **Customizable Templates:** Choose from various professional templates to create a standout resume.
+* **Real-Time Preview:** Instantly see how your resume looks as you make changes.
+* **PDF Export:** Save and export your finished resume in PDF format to share with recruiters.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🏆 Certification Quizzes
+* **Timed Quizzes:** Test your knowledge with timed, multiple-choice questions.
+* **Diverse Question Bank:** Access questions with varying difficulty levels across different technical and management categories.
+* **Progress Tracking:** Receive detailed score reports and suggestions for improvement after each attempt.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🎙️ AI-Powered Mock Interviews
+* **Role-Specific Questions:** Practice with pre-set questions categorized by job role.
+* **AI-Generated Feedback:** Receive AI-powered feedback on your clarity and confidence.
+* **Response Recording:** Record your audio responses for self-assessment and review.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **Framework:** Next.js
+* **Authentication:** Clerk
+* **Database & ORM:** SQL(NeonDB + Drizzle ORM)
+* **Styling:** Tailwind CSS
+
+---
+
+## 🚀 Getting Started
+
+To get a local copy up and running, follow these steps.
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/Dhaneshvsp/Career-Elevate.git](https://github.com/Dhaneshvsp/Career-Elevate.git)
+    cd Career-Elevate
+    ```
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+3.  **Set environment variables**
+    Create a `.env.local` file in the root directory and add the following:
+    ```env
+    DATABASE_URL="your_neon_database_url"
+    CLERK_PUBLISHABLE_KEY="your_clerk_publishable_key"
+    CLERK_SECRET_KEY="your_clerk_secret_key"
+    ```
+4.  **Run the development server**
+    ```bash
+    npm run dev
+    ```
+5.  **Open in browser**
+    Visit `http://localhost:3000` to see the application.
+
+---
+
+## 🧑‍💻 Team Members
+
+This project was a collaborative effort by:
+* G DHANESH VENKATA SAI PRAVEEN
+* B KEERTHANA
+* CH JEEVANA
+* A NIKHIL ADITYA RAM
+
+---
+
